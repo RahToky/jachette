@@ -1,4 +1,3 @@
-import 'package:bluekango/entity/table.dart';
 import 'package:flutter/cupertino.dart';
 
 class Addresses{
