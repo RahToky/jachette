@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MenuDetailScreen extends StatelessWidget {
+class MenuListScreen extends StatelessWidget {
   static final String routeName = "/commands";
 
   @override
@@ -25,10 +25,12 @@ class MenuDetailScreen extends StatelessWidget {
                   color: Colors.transparent,
                 ),
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Image.asset('assets/images/photo_1.png'),
-                    title: Text('title $index'),
-                    subtitle: Text('sous titre $index \nblabla'),
+                  return InkWell(
+                    child: ListTile(
+                      leading: Image.asset('assets/images/photo_1.png'),
+                      title: Text('title $index'),
+                      subtitle: Text('sous titre $index \nblabla'),
+                    ),
                   );
                 },
               ),

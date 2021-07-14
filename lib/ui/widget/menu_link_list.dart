@@ -1,13 +1,12 @@
-
 import 'package:bluekango/callback/item_listener.dart';
-import 'package:bluekango/ui/widget/menu_list_item.dart';
+import 'package:bluekango/ui/widget/menu_link_list_item.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
 
-class MenuList extends StatelessWidget {
+class MenuLinkList extends StatelessWidget {
   final ItemClickListener<String> itemClickListener;
 
-  MenuList(this.itemClickListener);
+  MenuLinkList(this.itemClickListener);
 
   final menus = [
     {'route': '/commands', 'title': 'Commandes', 'isFavorite': true},
@@ -25,7 +24,7 @@ class MenuList extends StatelessWidget {
                     onTap: () {
                       itemClickListener.onClick(menu['route']);
                     },
-                    child: MenuItem(
+                    child: MenuLinkItem(
                       text: menu['title'],
                       isFavorite: menu['isFavorite'],
                     ),
