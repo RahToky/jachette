@@ -1,3 +1,4 @@
+import 'package:bluekango/ui/screen/detail/command_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class MenuListScreen extends StatelessWidget {
@@ -31,6 +32,8 @@ class MenuListScreen extends StatelessWidget {
                       title: Text('title $index'),
                       subtitle: Text('sous titre $index \nblabla'),
                     ),
+                    onTap: () => Navigator.pushNamed(
+                        context, CommandDetailScreen.routeName),
                   );
                 },
               ),

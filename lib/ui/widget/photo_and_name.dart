@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PhotoName extends StatelessWidget {
+  final String title;
+  final String image;
+  PhotoName({@required this.image, @required this.title});
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -13,16 +17,10 @@ class PhotoName extends StatelessWidget {
           Container(
             width: photoWidth,
             height: photoWidth,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: const DecorationImage(
-                fit: BoxFit.fill,
-                image: const AssetImage('assets/images/photo_oval.png'),
-              ),
-            ),
+            child: Image.asset(image),
           ),
           const SizedBox(height: 20),
-          const Text("Mon app test", textScaleFactor: 1.8)
+          Text(title, textScaleFactor: 1.8)
         ],
       ),
     );

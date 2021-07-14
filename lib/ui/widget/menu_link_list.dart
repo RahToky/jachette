@@ -5,14 +5,9 @@ import 'dart:developer' as dev;
 
 class MenuLinkList extends StatelessWidget {
   final ItemClickListener<String> itemClickListener;
+  final menus;
 
-  MenuLinkList(this.itemClickListener);
-
-  final menus = [
-    {'route': '/commands', 'title': 'Commandes', 'isFavorite': true},
-    {'route': '/addresses', 'title': 'Mes adresses', 'isFavorite': false},
-    {'route': '/cards', 'title': 'Mes cartes', 'isFavorite': true},
-  ];
+  MenuLinkList({@required this.menus, @required this.itemClickListener});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +21,7 @@ class MenuLinkList extends StatelessWidget {
                     },
                     child: MenuLinkItem(
                       text: menu['title'],
-                      isFavorite: menu['isFavorite'],
+                      rightWidget: menu['rightWidget'] as Row,
                     ),
                   ),
                   Divider(height: 2, color: Colors.grey),
