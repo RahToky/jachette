@@ -12,11 +12,11 @@ class MenuLinkList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return menus!=null?Column(
       children: menus
           .map((menu) => Column(
                 children: [
-                  InkWell(
+                  itemClickListener != null?InkWell(
                     onTap: () {
                       itemClickListener.onClick(menu.route);
                     },
@@ -24,11 +24,14 @@ class MenuLinkList extends StatelessWidget {
                       text: menu.title,
                       rightWidget: menu.rightWidget,
                     ),
+                  ):MenuLinkItem(
+                    text: menu.title,
+                    rightWidget: menu.rightWidget,
                   ),
                   Divider(height: 2, color: Colors.grey),
                 ],
               ))
           .toList(),
-    );
+    ):Center(child: Text('Aucun menu disponible'),);
   }
 }
