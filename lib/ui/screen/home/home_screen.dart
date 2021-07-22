@@ -1,5 +1,7 @@
 import 'package:bluekango/callback/item_listener.dart';
+import 'package:bluekango/model/menu.dart';
 import 'package:bluekango/model/menu_link.dart';
+import 'package:bluekango/service/menu_service.dart';
 import 'package:bluekango/ui/screen/addresses/address_list_screen.dart';
 import 'package:bluekango/ui/screen/cards/card_list_screen.dart';
 import 'package:bluekango/ui/screen/commands/command_list_screen.dart';
@@ -19,14 +21,22 @@ class _HomeScreenState extends State<HomeScreen>
     implements ItemClickListener<String> {
   List<MenuLink> menus;
 
+  MenuService _menuService;
+
   @override
   void initState() {
+    _menuService = MenuService();
+    initMenu();
     super.initState();
-    menus = [
-      MenuLink('Commandes',CommandListScreen.routeName,getRightWidget(true)),
-      MenuLink('Mes adresses',AddressListScreen.routeName,getRightWidget(false)),
-      MenuLink('Mes cartes',CardListScreen.routeName,getRightWidget(true)),
-    ];
+  }
+
+  void initMenu() async{
+    List<Menu> menuList = await _menuService.getMenus();
+    menus = [];
+    for(Menu menu in menuList){
+      dev.log('title:${menu.title}');
+      menus.add(MenuLink(menu.title,menu.route,getRightWidget(menu.isFavorite)));
+    }
   }
 
   Widget getRightWidget(isFavorite) => Row(
@@ -75,6 +85,6 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void onClick(item) {
-    Navigator.pushNamed(context, item);
+    Navigator.pushNamed(context, item).then((value) => initMenu());
   }
 }

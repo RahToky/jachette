@@ -1,4 +1,4 @@
-/*
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -98,4 +98,3 @@ class DatabaseHelper {
     return await db.delete(table, where: 'id = ?', whereArgs: [id]);
   }
 }
-*/

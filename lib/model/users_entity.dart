@@ -6,6 +6,6 @@ class User{
   String name;
   String photo;
 
-  User({@required this.id,@required this.name,this.photo});
+  User({this.id,@required this.name,this.photo});
 
 }

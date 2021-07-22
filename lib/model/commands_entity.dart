@@ -10,7 +10,7 @@ class Command {
   int count;
   Product product;
 
-  Command({@required this.id,@required this.idCart,@required this.productId,@required this.count,this.product});
+  Command({this.id,@required this.idCart,@required this.productId,@required this.count,this.product});
 
 }
 

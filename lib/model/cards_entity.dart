@@ -6,7 +6,7 @@ class Card extends ListableEntity{
   String type;
   String number;
 
-  Card({@required this.id, @required this.type, @required this.number});
+  Card({this.id, @required this.type, @required this.number});
 
   @override
   List<String> getDetails() => [type,number];

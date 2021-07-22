@@ -1,8 +1,10 @@
+import 'package:bluekango/callback/item_listener.dart';
 import 'package:bluekango/service/card_service.dart';
 import 'package:bluekango/model/cards_entity.dart' as mpackage;
+import 'package:bluekango/ui/widget/button_favorite.dart';
 import 'package:flutter/material.dart';
 
-class CardListScreen extends StatelessWidget {
+class CardListScreen extends StatelessWidget implements ItemClickListener{
   static final String routeName = "/cards";
   final CardService _cardService = CardService();
 
@@ -54,7 +56,14 @@ class CardListScreen extends StatelessWidget {
             ),
           ],
         ),
+
+        bottomNavigationBar: FavoriteButton(this),
       ),
     );
+  }
+
+  @override
+  void onClick(item) {
+    // TODO: implement onClick
   }
 }

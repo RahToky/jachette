@@ -7,7 +7,7 @@ class Address extends ListableEntity{
   String street;
   String address;
 
-  Address({@required this.id,this.street,@required this.address});
+  Address({this.id,this.street,@required this.address});
 
   @override
   List<String> getDetails()=> [street,address];

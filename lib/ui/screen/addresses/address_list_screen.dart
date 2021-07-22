@@ -1,8 +1,10 @@
+import 'package:bluekango/callback/item_listener.dart';
 import 'package:bluekango/model/addresses_entity.dart';
 import 'package:bluekango/service/address_service.dart';
+import 'package:bluekango/ui/widget/button_favorite.dart';
 import 'package:flutter/material.dart';
 
-class AddressListScreen extends StatelessWidget {
+class AddressListScreen extends StatelessWidget implements ItemClickListener{
   static final String routeName = "/addresses";
   final AddressService _addressService = AddressService();
 
@@ -53,7 +55,13 @@ class AddressListScreen extends StatelessWidget {
             ),
           ],
         ),
+        bottomNavigationBar: FavoriteButton(this),
       ),
     );
+  }
+
+  @override
+  void onClick(item) {
+
   }
 }

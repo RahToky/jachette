@@ -1,10 +1,12 @@
+import 'package:bluekango/callback/item_listener.dart';
 import 'package:bluekango/model/commands_entity.dart';
 import 'package:bluekango/service/comand_service.dart';
 import 'package:bluekango/ui/screen/commands/command_detail_screen.dart';
+import 'package:bluekango/ui/widget/button_favorite.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
 
-class CommandListScreen extends StatelessWidget {
+class CommandListScreen extends StatelessWidget implements ItemClickListener{
   static final String routeName = "/commands";
   final CommandService _commandService = CommandService();
 
@@ -60,7 +62,14 @@ class CommandListScreen extends StatelessWidget {
             ),
           ],
         ),
+
+        bottomNavigationBar: FavoriteButton(this),
       ),
     );
+  }
+
+  @override
+  void onClick(item) {
+    // TODO: implement onClick
   }
 }
