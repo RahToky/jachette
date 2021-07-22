@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
-class Users{
+class User{
 
   int id;
   String name;
   String photo;
 
-  Users({@required this.id,@required this.name,this.photo});
+  User({@required this.id,@required this.name,this.photo});
 
 }

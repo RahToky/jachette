@@ -1,6 +1,8 @@
-import 'package:bluekango/ui/screen/detail/command_detail_screen.dart';
+import 'package:bluekango/ui/screen/commands/command_detail_screen.dart';
 import 'package:bluekango/ui/screen/home/home_screen.dart';
-import 'package:bluekango/ui/screen/list/menu_list_screen.dart';
+import 'package:bluekango/ui/screen/addresses/address_list_screen.dart';
+import 'package:bluekango/ui/screen/cards/card_list_screen.dart';
+import 'package:bluekango/ui/screen/commands/command_list_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Mon app test',
       theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -24,8 +27,10 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
-        MenuListScreen.routeName: (context) => MenuListScreen(),
+        CommandListScreen.routeName: (context) => CommandListScreen(),
         CommandDetailScreen.routeName: (context) => CommandDetailScreen(),
+        CardListScreen.routeName:(context)=> CardListScreen(),
+        AddressListScreen.routeName:(context)=> AddressListScreen(),
       },
     );
   }

@@ -1,4 +1,8 @@
 import 'package:bluekango/callback/item_listener.dart';
+import 'package:bluekango/model/menu_link.dart';
+import 'package:bluekango/ui/screen/addresses/address_list_screen.dart';
+import 'package:bluekango/ui/screen/cards/card_list_screen.dart';
+import 'package:bluekango/ui/screen/commands/command_list_screen.dart';
 import 'package:bluekango/ui/widget/menu_link_list.dart';
 import 'package:bluekango/ui/widget/photo_and_name.dart';
 import 'package:flutter/material.dart';
@@ -13,34 +17,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     implements ItemClickListener<String> {
-  dynamic menus;
+  List<MenuLink> menus;
 
   @override
   void initState() {
     super.initState();
     menus = [
-      {
-        'route': '/commands',
-        'title': 'Commandes sdfs',
-        'isFavorite': true,
-        'rightWidget': rightWidget(true)
-      },
-      {
-        'route': '/addresses',
-        'title': 'Mes adresses',
-        'isFavorite': false,
-        'rightWidget': rightWidget(false)
-      },
-      {
-        'route': '/cards',
-        'title': 'Mes cartes',
-        'isFavorite': true,
-        'rightWidget': rightWidget(true)
-      },
+      MenuLink('Commandes',CommandListScreen.routeName,getRightWidget(true)),
+      MenuLink('Mes adresses',AddressListScreen.routeName,getRightWidget(false)),
+      MenuLink('Mes cartes',CardListScreen.routeName,getRightWidget(true)),
     ];
   }
 
-  Widget rightWidget(isFavorite) => Row(
+  Widget getRightWidget(isFavorite) => Row(
         children: [
           if (isFavorite)
             IconButton(
@@ -74,8 +63,8 @@ class _HomeScreenState extends State<HomeScreen>
             Padding(
               padding: EdgeInsets.only(left: 20, right: 20),
               child: MenuLinkList(
-                itemClickListener: this,
                 menus: this.menus,
+                itemClickListener: this,
               ),
             )
           ],

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
-class Products{
+class Product{
 
   int id;
   String name;
 
-  Products({@required this.id,@required this.name});
+  Product({@required this.id,@required this.name});
 
 }

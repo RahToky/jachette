@@ -1,11 +1,12 @@
 import 'package:bluekango/callback/item_listener.dart';
+import 'package:bluekango/model/menu_link.dart';
 import 'package:bluekango/ui/widget/menu_link_list_item.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
 
 class MenuLinkList extends StatelessWidget {
   final ItemClickListener<String> itemClickListener;
-  final menus;
+  final List<MenuLink> menus;
 
   MenuLinkList({@required this.menus, @required this.itemClickListener});
 
@@ -17,11 +18,11 @@ class MenuLinkList extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      itemClickListener.onClick(menu['route']);
+                      itemClickListener.onClick(menu.route);
                     },
                     child: MenuLinkItem(
-                      text: menu['title'],
-                      rightWidget: menu['rightWidget'] as Row,
+                      text: menu.title,
+                      rightWidget: menu.rightWidget,
                     ),
                   ),
                   Divider(height: 2, color: Colors.grey),
