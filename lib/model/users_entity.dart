@@ -11,14 +11,16 @@ class User{
 
   @override
   factory User.fromMap(Map<String, dynamic> map) {
-    // TODO: implement fromMap
-    throw UnimplementedError();
+    return User(id:map['id'],name:map['name'],photo:map['photo']);
   }
 
   @override
   Map<String, dynamic> toMap() {
-    // TODO: implement toMap
-    throw UnimplementedError();
+    return {
+      'id':this.id,
+      'name':this.name,
+      'photo':this.photo,
+    };
   }
 
 }

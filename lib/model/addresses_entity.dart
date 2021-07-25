@@ -19,12 +19,15 @@ class Address extends ListableEntity{
   String getTitle() => '$id adresse';
 
   factory Address.fromMap(Map<String, dynamic> map) {
-    throw UnimplementedError();
+      return Address(id:map['id'],street:map['street'],address:map['address']);
   }
 
   Map<String, dynamic> toMap() {
-    // TODO: implement toMap
-    throw UnimplementedError();
+    return {
+      'id':this.id,
+      'street':this.street,
+      'address':this.address,
+    };
   }
 
 }

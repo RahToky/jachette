@@ -16,15 +16,15 @@ class Card extends ListableEntity{
   @override
   String getTitle()=> 'Card $id';
 
-  @override
   factory Card.fromMap(Map<String, dynamic> map) {
-    // TODO: implement fromMap
-    throw UnimplementedError();
+    return Card(id:map['id'],type: map['type'],number: map['number']);
   }
 
-  @override
   Map<String, dynamic> toMap() {
-    // TODO: implement toMap
-    throw UnimplementedError();
+    return {
+      'id':this.id,
+      'type':this.type,
+      'number':this.number
+    };
   }
 }

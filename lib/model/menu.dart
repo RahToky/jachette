@@ -5,7 +5,7 @@ class Menu{
 
   static String tableName = 'Menu';
 
-  String id;
+  int id;
   String title;
   String route;
   bool isFavorite;
@@ -17,7 +17,7 @@ class Menu{
       'id':this.id,
       'title':this.title,
       'route':this.route,
-      'is_favorite':this.isFavorite
+      'is_favorite':this.isFavorite?1:0
     };
   }
 
@@ -26,7 +26,7 @@ class Menu{
       id:map['id'],
       title: map['title'],
       route:map['route'],
-      isFavorite: map['is_favorite'],
+      isFavorite: map['is_favorite'] == 0?false:true,
     );
   }
 

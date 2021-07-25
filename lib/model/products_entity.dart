@@ -11,14 +11,15 @@ class Product{
 
   @override
   factory Product.fromMap(Map<String, dynamic> map) {
-    // TODO: implement fromMap
-    throw UnimplementedError();
+    return Product(id:map['id'],name:map['name']);
   }
 
   @override
   Map<String, dynamic> toMap() {
-    // TODO: implement toMap
-    throw UnimplementedError();
+    return {
+      'id':this.id,
+      'name':this.name,
+    };
   }
 
 }

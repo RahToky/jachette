@@ -1,11 +1,12 @@
 import 'package:bluekango/model/cards_entity.dart';
+import 'package:bluekango/service/base_service.dart';
 
-class CardService{
-  Future<List<Card>> getCards(){
-    return Future.value([
-      Card(id:1,type:'Mastercard',number:'1234567890'),
-      Card(id:1,type:'VISA',number:'0987654321'),
-      Card(id:1,type:'American Express',number:'56473829102'),
-    ]);
+class CardService extends BaseService{
+
+  Future<List<Card>> getCards() async{
+    List<Map<String,dynamic>> mapList = await databaseHelper.findAll(Card.tableName);
+    return List.generate(mapList.length, (index){
+      return Card.fromMap(mapList[index]);
+    });
   }
 }
