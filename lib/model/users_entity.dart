@@ -1,6 +1,7 @@
+import 'package:bluekango/model/entity.dart';
 import 'package:flutter/cupertino.dart';
 
-class User{
+class User extends Entity{
 
   static String tableName = 'User';
   int id;
@@ -10,7 +11,7 @@ class User{
   User({this.id,@required this.name,this.photo});
 
   @override
-  factory User.fromMap(Map<String, dynamic> map) {
+  User fromMap(Map<String, dynamic> map) {
     return User(id:map['id'],name:map['name'],photo:map['photo']);
   }
 

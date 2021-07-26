@@ -1,12 +1,12 @@
-import 'package:bluekango/dao/db_helper.dart';
-import 'package:bluekango/model/listable_entity.dart';
+import 'package:bluekango/dao/base_dao.dart';
+import 'package:bluekango/model/entity.dart';
 
-class BaseService<T extends ListableEntity>{
+class BaseService{
 
-  DatabaseHelper databaseHelper =DatabaseHelper.instance;
+  BaseDao baseDao = BaseDao();
 
-  List<T> findAll(ListableEntity entity){
-    entity.getTitle() as T;
+  Future<List<T>> findAll<T extends Entity>(T entity, String tableName) async {
+    return await baseDao.findAll(entity, tableName);
   }
 
 }

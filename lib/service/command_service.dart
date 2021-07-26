@@ -1,15 +1,37 @@
 
+import 'package:bluekango/dao/command_dao.dart';
 import 'package:bluekango/model/commands_entity.dart';
 import 'package:bluekango/model/products_entity.dart';
-import 'package:bluekango/service/user_service.dart';
 
 class CommandService {
 
-  UserService _userService = UserService();
+  CommandDao _commandDao = CommandDao();
 
   Future<List<Cart>> getCarts() async{
-    List<Product> products = getProducts();
+    return await _commandDao.getCarts();
+  }
 
+  List<Product> getProducts(){
+    return null;
+  }
+
+  Product getProductById(int id){
+    return null;
+  }
+
+  Product getProductById2(List<Product> products, int id){
+    return null;
+  }
+
+  Future<Cart> getCartById(int id) async{
+    return null;
+  }
+
+
+  /*
+  UserService _userService = UserService();
+  Future<List<Cart>> getCarts() async{
+    List<Product> products = getProducts();
     List<Cart> carts = [
       Cart(id: 1, userId: 2, commands: [
         Command(id: 1, count: 1, productId: 6, cartId: 1,product: getProductById2(products,6)),
@@ -27,7 +49,6 @@ class CommandService {
         Command(id: 3, count: 2, productId: 7, cartId: 3,product: getProductById2(products,7)),
       ],user:await _userService.getUserById(4)),
     ];
-
     return Future.value(carts);
   }
 
@@ -68,5 +89,5 @@ class CommandService {
         return c;
     }
     return null;
-  }
+  }*/
 }

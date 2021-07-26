@@ -1,6 +1,6 @@
 import 'package:bluekango/callback/item_listener.dart';
 import 'package:bluekango/model/commands_entity.dart';
-import 'package:bluekango/service/comand_service.dart';
+import 'package:bluekango/service/command_service.dart';
 import 'package:bluekango/ui/screen/commands/command_detail_screen.dart';
 import 'package:bluekango/ui/widget/button_favorite.dart';
 import 'package:flutter/material.dart';

@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
           )),
       initialRoute: HomeScreen.routeName,
       routes: {
+        TestScreen.routeName: (context) => TestScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
         CommandListScreen.routeName: (context) => CommandListScreen(),
         CommandDetailScreen.routeName: (context) => CommandDetailScreen(),

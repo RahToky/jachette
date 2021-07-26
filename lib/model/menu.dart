@@ -1,8 +1,7 @@
 import 'package:bluekango/model/entity.dart';
 import 'package:flutter/cupertino.dart';
 
-class Menu{
-
+class Menu extends Entity {
   static String tableName = 'Menu';
 
   int id;
@@ -10,24 +9,29 @@ class Menu{
   String route;
   bool isFavorite;
 
-  Menu({this.id, @required this.title, @required this.route,this.isFavorite = false});
+  Menu(
+      {this.id,
+      @required this.title,
+      @required this.route,
+      this.isFavorite = false});
 
-  Map<String,dynamic> toMap(){
+  @override
+  Map<String, dynamic> toMap() {
     return {
-      'id':this.id,
-      'title':this.title,
-      'route':this.route,
-      'is_favorite':this.isFavorite?1:0
+      'id': this.id,
+      'title': this.title,
+      'route': this.route,
+      'is_favorite': this.isFavorite ? 1 : 0
     };
   }
 
-  factory Menu.fromMap(Map<String, dynamic> map) {
+  @override
+  Menu fromMap(Map<String, dynamic> map) {
     return Menu(
-      id:map['id'],
+      id: map['id'],
       title: map['title'],
-      route:map['route'],
-      isFavorite: map['is_favorite'] == 0?false:true,
+      route: map['route'],
+      isFavorite: map['is_favorite'] == 0 ? false : true,
     );
   }
-
 }

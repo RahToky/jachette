@@ -2,7 +2,7 @@ import 'package:bluekango/model/entity.dart';
 import 'package:bluekango/model/listable_entity.dart';
 import 'package:flutter/material.dart';
 
-class Card extends ListableEntity{
+class Card extends ListableEntity implements Entity{
   static String tableName = 'Card';
   int id;
   String type;
@@ -16,10 +16,12 @@ class Card extends ListableEntity{
   @override
   String getTitle()=> 'Card $id';
 
-  factory Card.fromMap(Map<String, dynamic> map) {
+  @override
+  Card fromMap(Map<String, dynamic> map) {
     return Card(id:map['id'],type: map['type'],number: map['number']);
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       'id':this.id,
