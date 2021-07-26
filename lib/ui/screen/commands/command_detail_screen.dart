@@ -26,7 +26,7 @@ class _CommandDetailScreenState extends State<CommandDetailScreen>
           c.product.name,
           null,
           CommandCountBtn(
-              commandId: c.id, count: c.count, addCommandListener: this));
+              commandId: c.id, count: c.count, addCommandListener: this),null);
     }).toList();
   }
 
@@ -66,7 +66,7 @@ class _CommandDetailScreenState extends State<CommandDetailScreen>
                             icon: Image.asset('assets/icons/icon_plus.png',
                                 scale: 1.2),
                             onPressed: () {},
-                          ))
+                          ),null)
                     ], itemClickListener: null),
                   ],
                 ),

@@ -1,16 +1,29 @@
 import 'package:bluekango/callback/item_listener.dart';
 import 'package:bluekango/model/addresses_entity.dart';
+import 'package:bluekango/model/menu.dart';
 import 'package:bluekango/service/address_service.dart';
+import 'package:bluekango/service/menu_service.dart';
 import 'package:bluekango/ui/widget/button_favorite.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as dev;
 
-class AddressListScreen extends StatelessWidget implements ItemClickListener{
+class AddressListScreen extends StatefulWidget {
   static final String routeName = "/addresses";
-  final AddressService _addressService = AddressService();
 
+  @override
+  _AddressListScreenState createState() => _AddressListScreenState();
+}
+
+class _AddressListScreenState extends State<AddressListScreen> implements ItemClickListener{
+  final AddressService _addressService = AddressService();
+  final MenuService _menuService = MenuService();
+  Menu menu;
 
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context).settings.arguments as Map;
+    menu = arguments['menu'];
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(),
@@ -55,13 +68,21 @@ class AddressListScreen extends StatelessWidget implements ItemClickListener{
             ),
           ],
         ),
-        bottomNavigationBar: FavoriteButton(this),
+        bottomNavigationBar: FavoriteButton(isFavorite:menu.isFavorite,itemClickListener: this),
       ),
     );
   }
 
   @override
   void onClick(item) {
+    updateFavorite();
+  }
 
+  void updateFavorite() async{
+    int updated = await _menuService.setFavorite(menu.id, !menu.isFavorite);
+    dev.log('updated = $updated');
+    if(updated == 1) {
+      menu.isFavorite = !menu.isFavorite;
+    }
   }
 }

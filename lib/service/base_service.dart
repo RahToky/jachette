@@ -1,8 +1,10 @@
 import 'package:bluekango/dao/base_dao.dart';
 import 'package:bluekango/model/entity.dart';
+import 'package:flutter/cupertino.dart';
 
 class BaseService{
 
+  @protected
   BaseDao baseDao = BaseDao();
 
   Future<List<T>> findAll<T extends Entity>(T entity, String tableName) async {

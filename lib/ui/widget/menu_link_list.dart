@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
 
 class MenuLinkList extends StatelessWidget {
-  final ItemClickListener<String> itemClickListener;
+  final ItemClickListener itemClickListener;
   final List<MenuLink> menus;
 
   MenuLinkList({@required this.menus, @required this.itemClickListener});
@@ -18,7 +18,7 @@ class MenuLinkList extends StatelessWidget {
                 children: [
                   itemClickListener != null?InkWell(
                     onTap: () {
-                      itemClickListener.onClick(menu.route);
+                      itemClickListener.onClick(menu.menu);
                     },
                     child: MenuLinkItem(
                       text: menu.title,
@@ -32,6 +32,8 @@ class MenuLinkList extends StatelessWidget {
                 ],
               ))
           .toList(),
-    ):Center(child: Text('Aucun menu disponible'),);
+    ):Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }

@@ -18,7 +18,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen>
-    implements ItemClickListener<String> {
+    implements ItemClickListener<Menu> {
+  List<Menu> menuList;
   List<MenuLink> menus;
 
   MenuService _menuService;
@@ -30,12 +31,12 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
   }
 
-  void initMenu() async{
-    List<Menu> menuList = await _menuService.getMenus();
+  void initMenu() async {
+    menuList = await _menuService.getMenus();
     menus = [];
-    for(Menu menu in menuList){
-      dev.log('title:${menu.title}');
-      menus.add(MenuLink(menu.title,menu.route,getRightWidget(menu.isFavorite)));
+    for (Menu menu in menuList) {
+      menus.add(
+          MenuLink(menu.title, menu.route, getRightWidget(menu.isFavorite),menu));
     }
   }
 
@@ -84,7 +85,8 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   @override
-  void onClick(item) {
-    Navigator.pushNamed(context, item).then((value) => initMenu());
+  void onClick(menu) {
+    Navigator.pushNamed(context, (menu as Menu).route, arguments: {
+      'menu':menu }).then((value) => setState((){initMenu();}) );
   }
 }
