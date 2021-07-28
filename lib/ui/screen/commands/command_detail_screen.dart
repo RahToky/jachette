@@ -71,9 +71,17 @@ class _CommandDetailScreenState extends State<CommandDetailScreen>
               Container(
                 alignment: Alignment.center,
                 height: photoNameHeight,
-                child: PhotoName(
-                  image: 'assets/images/${_cart.user.photo}',
-                  title: '${_cart.id} transaction',
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Hero(tag: '${_cart.user.photo}', child: Image.asset('assets/images/${_cart.user.photo}')),
+                    SizedBox(height: 10),
+                    Text('${_cart.id} transaction',textScaleFactor: 2,),
+                    /*PhotoName(
+                      image: 'assets/images/${_cart.user.photo}',
+                      title: '${_cart.id} transaction',
+                    ),*/
+                  ],
                 ),
               ),
               Padding(

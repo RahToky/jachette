@@ -17,6 +17,7 @@ class MenuLinkList extends StatelessWidget {
           .map((menu) => Column(
                 children: [
                   itemClickListener != null?InkWell(
+                    key: Key(menu.route),
                     onTap: () {
                       itemClickListener.onClick(menu.menu);
                     },
