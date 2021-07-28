@@ -38,21 +38,21 @@ class _HomeScreenState extends State<HomeScreen>
       menus.add(
           MenuLink(menu.title, menu.route, getRightWidget(menu.isFavorite),menu));
     }
+    setState((){});
   }
 
-  Widget getRightWidget(isFavorite) => Row(
+  Widget getRightWidget(bool isFavorite) => Row(
         children: [
           if (isFavorite)
             IconButton(
               icon: Image.asset('assets/icons/icon_star.png', scale: 1.2),
-              onPressed: () {},
             ),
           IconButton(
             icon: const Icon(
               Icons.keyboard_arrow_right,
               color: Colors.grey,
             ),
-            onPressed: () {},
+            // onPressed: () {this.onClick(menu);},
           ),
         ],
       );
@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void onClick(menu) {
-    Navigator.pushNamed(context, (menu as Menu).route, arguments: {
+    Navigator.pushNamed(context, menu.route, arguments: {
       'menu':menu }).then((value) => setState((){initMenu();}) );
   }
 }

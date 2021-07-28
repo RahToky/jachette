@@ -15,34 +15,33 @@ class CommandDao extends BaseDao {
     ''';
 
     List<Map<String, dynamic>> cartMapList = await db.rawQuery(cartQuery);
-    dev.log('cartMapList = $cartMapList');
 
     for (Map<String, dynamic> cartMap in cartMapList) {
       Cart c = Cart();
       c = c.fromMap(cartMap);
       c.user = User(id: c.userId, name: cartMap['name'], photo: cartMap['photo']);
-
-      String commandsQuery = '''
-        SELECT * FROM ${Command.tableName} cmd JOIN ${Cart.tableName} c on c.id = cmd.cartId JOIN ${Product.tableName} p on p.id = cmd.productId WHERE cmd.cartId = ?
-        ''';
-      List<Map<String, dynamic>> commandsMapList =
-          await db.rawQuery(commandsQuery,[c.id]);
-      dev.log('commandsMapList = $commandsMapList');
-
-      List<Command> commands = [];
-
-      for(Map<String, dynamic> commandMap in commandsMapList){
-        Command command = Command();
-        command = command.fromMap(commandMap);
-        command.product = Product();
-        command.product = command.product.fromMap(commandMap);
-        commands.add(command);
-      }
-
-      c.commands = commands;
+      c.commands = await getCommandsByCartId(c.id);
       carts.add(c);
     }
-
     return await Future.value(carts);
+  }
+
+  Future<List<Command>> getCommandsByCartId(int cartId) async{
+    final Database db = await databaseHelper.database;
+    String commandsQuery = '''
+        SELECT * FROM ${Command.tableName} cmd JOIN ${Cart.tableName} c on c.id = cmd.cartId JOIN ${Product.tableName} p on p.id = cmd.productId WHERE cmd.cartId = ?
+        ''';
+    List<Map<String, dynamic>> commandsMapList =
+    await db.rawQuery(commandsQuery, [cartId]);
+    List<Command> commands = [];
+
+    for (Map<String, dynamic> commandMap in commandsMapList) {
+      Command command = Command();
+      command = command.fromMap(commandMap);
+      command.product = Product();
+      command.product = command.product.fromMap(commandMap);
+      commands.add(command);
+    }
+    return Future.value(commands);
   }
 }

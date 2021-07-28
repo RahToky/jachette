@@ -11,4 +11,8 @@ class CommandService {
     return await _commandDao.getCarts();
   }
 
+  Future<List<Command>> getCommandsByCartId(int cartId) async{
+    return await _commandDao.getCommandsByCartId(cartId);
+  }
+
 }

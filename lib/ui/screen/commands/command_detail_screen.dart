@@ -1,6 +1,7 @@
 import 'package:bluekango/callback/command_add_listener.dart';
 import 'package:bluekango/model/commands_entity.dart';
 import 'package:bluekango/model/menu_link.dart';
+import 'package:bluekango/service/command_service.dart';
 import 'package:bluekango/ui/screen/commands/command_count_button.dart';
 import 'package:bluekango/ui/widget/menu_link_list.dart';
 import 'package:bluekango/ui/widget/photo_and_name.dart';
@@ -17,24 +18,46 @@ class CommandDetailScreen extends StatefulWidget {
 
 class _CommandDetailScreenState extends State<CommandDetailScreen>
     implements AddCommandListener {
+  Future<List<Command>> _commands;
   List<MenuLink> menus;
+  CommandService _commandService = CommandService();
   Cart _cart;
 
-  void createMenus(Cart cart) {
-    menus = _cart.commands.map((c) {
+  void createMenus(List<Command> commands) {
+    _cart.commands = commands;
+    menus = commands.map((c) {
+      dev.log('commands = ${c.toMap()}');
       return MenuLink(
           c.product.name,
           null,
           CommandCountBtn(
-              commandId: c.id, count: c.count, addCommandListener: this),null);
+              commandId: c.id, count: c.count, addCommandListener: this),
+          null);
     }).toList();
+  }
+
+  void findCommands() async {
+    _commands = _commandService.getCommandsByCartId(_cart.id);
+  }
+
+  @override
+  void initState() {
+    dev.log('initState');
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final arguments = ModalRoute.of(context).settings.arguments as Map;
-    _cart = arguments['cart'] as Cart;
-    createMenus(_cart);
+    dev.log('build');
+      final arguments = ModalRoute
+          .of(context)
+          .settings
+          .arguments as Map;
+      _cart = arguments['cart'] as Cart;
+    if(_commands == null) {
+      findCommands();
+    }
+
 
     final Size size = MediaQuery.of(context).size;
     final double photoNameHeight = size.height * 0.3;
@@ -57,7 +80,19 @@ class _CommandDetailScreenState extends State<CommandDetailScreen>
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Column(
                   children: [
-                    MenuLinkList(menus: menus, itemClickListener: null),
+                    FutureBuilder<List<Command>>(
+                      future: _commands,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          createMenus(snapshot.data);
+                          return MenuLinkList(
+                              menus: menus, itemClickListener: null);
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    ),
                     MenuLinkList(menus: [
                       MenuLink(
                           'Ajouter élément',
@@ -66,7 +101,8 @@ class _CommandDetailScreenState extends State<CommandDetailScreen>
                             icon: Image.asset('assets/icons/icon_plus.png',
                                 scale: 1.2),
                             onPressed: () {},
-                          ),null)
+                          ),
+                          null)
                     ], itemClickListener: null),
                   ],
                 ),
