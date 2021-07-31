@@ -1,14 +1,11 @@
+
 import 'package:bluekango/callback/item_listener.dart';
 import 'package:bluekango/model/menu.dart';
 import 'package:bluekango/model/menu_link.dart';
-import 'package:bluekango/service/menu_service.dart';
-import 'package:bluekango/ui/screen/addresses/address_list_screen.dart';
-import 'package:bluekango/ui/screen/cards/card_list_screen.dart';
-import 'package:bluekango/ui/screen/commands/command_list_screen.dart';
 import 'package:bluekango/ui/widget/menu_link_list.dart';
 import 'package:bluekango/ui/widget/photo_and_name.dart';
+import 'package:bluekango/usecase/menu_usecase.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as dev;
 
 class HomeScreen extends StatefulWidget {
   static final String routeName = "/";
@@ -22,11 +19,11 @@ class _HomeScreenState extends State<HomeScreen>
   List<Menu> menuList;
   List<MenuLink> menus;
 
-  MenuService _menuService;
+  MenuUseCase _menuService;
 
   @override
   void initState() {
-    _menuService = MenuService();
+    _menuService = MenuUseCase();
     initMenu();
     super.initState();
   }

@@ -1,7 +1,7 @@
 import 'package:bluekango/model/cards_entity.dart';
-import 'package:bluekango/service/base_service.dart';
+import 'package:bluekango/usecase/base_usecase.dart';
 
-class CardService extends BaseService{
+class CardUseCase extends BaseUseCase{
 
   Future<List<Card>> getCards() async{
     return await findAll(Card(), Card.tableName);

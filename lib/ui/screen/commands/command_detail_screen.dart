@@ -1,13 +1,13 @@
+import 'dart:developer' as dev;
+
 import 'package:bluekango/callback/command_add_listener.dart';
 import 'package:bluekango/model/commands_entity.dart';
 import 'package:bluekango/model/menu_link.dart';
-import 'package:bluekango/service/command_service.dart';
 import 'package:bluekango/ui/screen/commands/command_count_button.dart';
 import 'package:bluekango/ui/widget/menu_link_list.dart';
-import 'package:bluekango/ui/widget/photo_and_name.dart';
+import 'package:bluekango/usecase/command_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as dev;
 
 class CommandDetailScreen extends StatefulWidget {
   static final String routeName = '/command_detail';
@@ -20,7 +20,7 @@ class _CommandDetailScreenState extends State<CommandDetailScreen>
     implements AddCommandListener {
   Future<List<Command>> _commands;
   List<MenuLink> menus;
-  CommandService _commandService = CommandService();
+  CommandUseCase _commandService = CommandUseCase();
   Cart _cart;
 
   void createMenus(List<Command> commands) {

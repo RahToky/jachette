@@ -1,7 +1,7 @@
 import 'package:bluekango/model/addresses_entity.dart';
-import 'package:bluekango/service/base_service.dart';
+import 'package:bluekango/usecase/base_usecase.dart';
 
-class AddressService extends BaseService{
+class AddressUseCase extends BaseUseCase{
 
   Future<List<Address>> getAddresses(){
     return findAll(Address(), Address.tableName);

@@ -1,7 +1,7 @@
 import 'package:bluekango/model/menu.dart';
-import 'package:bluekango/service/base_service.dart';
+import 'package:bluekango/usecase/base_usecase.dart';
 
-class MenuService extends BaseService{
+class MenuUseCase extends BaseUseCase{
 
   Future<List<Menu>> getMenus() async {
     return await findAll(Menu(), Menu.tableName);

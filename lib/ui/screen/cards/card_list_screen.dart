@@ -1,8 +1,8 @@
 import 'package:bluekango/callback/item_listener.dart';
 import 'package:bluekango/model/menu.dart';
-import 'package:bluekango/service/card_service.dart';
+import 'package:bluekango/usecase/card_usecase.dart';
 import 'package:bluekango/model/cards_entity.dart' as mpackage;
-import 'package:bluekango/service/menu_service.dart';
+import 'package:bluekango/usecase/menu_usecase.dart';
 import 'package:bluekango/ui/widget/button_favorite.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
@@ -15,8 +15,8 @@ class CardListScreen extends StatefulWidget {
 }
 
 class _CardListScreenState extends State<CardListScreen> implements ItemClickListener{
-  final CardService _cardService = CardService();
-  final MenuService _menuService = MenuService();
+  final CardUseCase _cardService = CardUseCase();
+  final MenuUseCase _menuService = MenuUseCase();
   Menu menu;
 
 

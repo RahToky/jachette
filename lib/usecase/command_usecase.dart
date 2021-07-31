@@ -3,7 +3,7 @@ import 'package:bluekango/dao/command_dao.dart';
 import 'package:bluekango/model/commands_entity.dart';
 import 'package:bluekango/model/products_entity.dart';
 
-class CommandService {
+class CommandUseCase {
 
   CommandDao _commandDao = CommandDao();
 

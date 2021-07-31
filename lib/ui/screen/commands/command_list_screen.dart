@@ -1,8 +1,8 @@
 import 'package:bluekango/callback/item_listener.dart';
 import 'package:bluekango/model/commands_entity.dart';
 import 'package:bluekango/model/menu.dart';
-import 'package:bluekango/service/command_service.dart';
-import 'package:bluekango/service/menu_service.dart';
+import 'package:bluekango/usecase/command_usecase.dart';
+import 'package:bluekango/usecase/menu_usecase.dart';
 import 'package:bluekango/ui/screen/commands/command_detail_screen.dart';
 import 'package:bluekango/ui/widget/button_favorite.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +16,8 @@ class CommandListScreen extends StatefulWidget {
 }
 
 class _CommandListScreenState extends State<CommandListScreen> implements ItemClickListener{
-  final CommandService _commandService = CommandService();
-  final MenuService _menuService = MenuService();
+  final CommandUseCase _commandService = CommandUseCase();
+  final MenuUseCase _menuService = MenuUseCase();
   Menu menu;
 
   @override

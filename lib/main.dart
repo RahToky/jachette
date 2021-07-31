@@ -3,7 +3,6 @@ import 'package:bluekango/ui/screen/home/home_screen.dart';
 import 'package:bluekango/ui/screen/addresses/address_list_screen.dart';
 import 'package:bluekango/ui/screen/cards/card_list_screen.dart';
 import 'package:bluekango/ui/screen/commands/command_list_screen.dart';
-import 'package:bluekango/ui/test/test_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
           )),
       initialRoute: HomeScreen.routeName,
       routes: {
-        TestScreen.routeName: (context) => TestScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
         CommandListScreen.routeName: (context) => CommandListScreen(),
         CommandDetailScreen.routeName: (context) => CommandDetailScreen(),

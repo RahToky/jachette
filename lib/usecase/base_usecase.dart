@@ -2,7 +2,7 @@ import 'package:bluekango/dao/base_dao.dart';
 import 'package:bluekango/model/entity.dart';
 import 'package:flutter/cupertino.dart';
 
-class BaseService{
+class BaseUseCase{
 
   @protected
   BaseDao baseDao = BaseDao();

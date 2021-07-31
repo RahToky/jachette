@@ -1,8 +1,8 @@
 import 'package:bluekango/callback/item_listener.dart';
 import 'package:bluekango/model/addresses_entity.dart';
 import 'package:bluekango/model/menu.dart';
-import 'package:bluekango/service/address_service.dart';
-import 'package:bluekango/service/menu_service.dart';
+import 'package:bluekango/usecase/address_usecase.dart';
+import 'package:bluekango/usecase/menu_usecase.dart';
 import 'package:bluekango/ui/widget/button_favorite.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev;
@@ -15,8 +15,8 @@ class AddressListScreen extends StatefulWidget {
 }
 
 class _AddressListScreenState extends State<AddressListScreen> implements ItemClickListener{
-  final AddressService _addressService = AddressService();
-  final MenuService _menuService = MenuService();
+  final AddressUseCase _addressService = AddressUseCase();
+  final MenuUseCase _menuService = MenuUseCase();
   Menu menu;
 
   @override
